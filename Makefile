@@ -25,6 +25,9 @@ docs:
 ci-job-precommit: docs
 	scripts/travisci/check_precommit.sh
 
+ci-job-examples:
+	pytest -vvvv tests/integration_tests/test_examples.py::test_algo_examples --durations=0
+
 ci-job-normal:
 	pytest --cov=garage -v -m \
 	    'not nightly and not huge and not flaky and not large and not mujoco' --durations=0

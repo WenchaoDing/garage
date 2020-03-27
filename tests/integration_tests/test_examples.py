@@ -16,16 +16,18 @@ NON_ALGO_EXAMPLES = [
 ]
 
 LONG_RUNNING_EXAMPLES = [
-    EXAMPLES_ROOT_DIR / 'tf/ppo_memorize_digits.py', EXAMPLES_ROOT_DIR /
-    'tf/dqn_pong.py', EXAMPLES_ROOT_DIR / 'tf/trpo_cubecrash.py',
+    # EXAMPLES_ROOT_DIR / 'tf/ppo_memorize_digits.py',
+    # EXAMPLES_ROOT_DIR / 'tf/dqn_pong.py',
+    # EXAMPLES_ROOT_DIR / 'tf/trpo_cubecrash.py',
     EXAMPLES_ROOT_DIR / 'tf/trpo_swimmer_ray_sampler.py',
-    EXAMPLES_ROOT_DIR / 'torch/maml_ppo_half_cheetah_dir.py',
-    EXAMPLES_ROOT_DIR / 'torch/maml_trpo_half_cheetah_dir.py',
-    EXAMPLES_ROOT_DIR / 'torch/maml_vpg_half_cheetah_dir.py',
-    EXAMPLES_ROOT_DIR / 'torch/maml_trpo_ml10.py', EXAMPLES_ROOT_DIR /
-    'torch/pearl_ml1_push.py', EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_halfcheetah.py',
-    EXAMPLES_ROOT_DIR / 'tf/rl2_trpo_halfcheetah.py',
-    EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_halfcheetah_meta_test.py'
+    # EXAMPLES_ROOT_DIR / 'torch/maml_ppo_half_cheetah_dir.py',
+    # EXAMPLES_ROOT_DIR / 'torch/maml_trpo_half_cheetah_dir.py',
+    # EXAMPLES_ROOT_DIR / 'torch/maml_vpg_half_cheetah_dir.py',
+    # EXAMPLES_ROOT_DIR / 'torch/maml_trpo_ml10.py',
+    # EXAMPLES_ROOT_DIR / 'torch/pearl_ml1_push.py',
+    # EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_halfcheetah.py',
+    # EXAMPLES_ROOT_DIR / 'tf/rl2_trpo_halfcheetah.py',
+    # EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_halfcheetah_meta_test.py'
 ]
 
 
@@ -38,12 +40,12 @@ def enumerate_algo_examples():
     """
     exclude = NON_ALGO_EXAMPLES + LONG_RUNNING_EXAMPLES
     all_examples = EXAMPLES_ROOT_DIR.glob('**/*.py')
-    return [str(e) for e in all_examples if e not in exclude]
+    return [str(e) for e in all_examples if e in LONG_RUNNING_EXAMPLES]
 
 
 @pytest.mark.mujoco
 @pytest.mark.no_cover
-@pytest.mark.timeout(70)
+# @pytest.mark.timeout(70)
 @pytest.mark.parametrize('filepath', enumerate_algo_examples())
 def test_algo_examples(filepath):
     """Test algo examples.
